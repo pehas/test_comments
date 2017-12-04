@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from bcomments import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^$', views.index_page, name='index_page'),
+    url(r'^add_comment/$', views.comment_add_page, name="add_comment_page"),
+    url(r'^add_comment/(?P<comment_id>\d+)$', views.comment_add_page, name="add_child_comment_page"),
+    url(r'^comments/(?P<comment_id>\d+)/$', views.comment_page, name="comment_page"),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
