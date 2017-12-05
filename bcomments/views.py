@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.forms import ModelForm, HiddenInput
 from django.http.response import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -20,7 +21,17 @@ class CommentsForm(ModelForm):
 
 
 def index_page(request):
-    comments = Comments.objects.filter(parent__isnull=True)
+    all_comments = Comments.objects.filter(parent__isnull=True)
+    paginator = Paginator(all_comments, 25)
+
+    page = request.GET.get('page')
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments = paginator.page(paginator.num_pages)
+
     return render(request, 'index_page.html', locals())
 
 
