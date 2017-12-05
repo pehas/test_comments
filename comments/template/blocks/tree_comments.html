@@ -1,0 +1,15 @@
+{% load mptt_tags %}
+{% recursetree comment %}
+    <ul id="id_comment_{{ node.id }}">
+        <li>
+            <a href="{% url "comment_page" node.id %}">#{{ node.id }}</a> {{ node.title }}<br>
+            <span>{{ node.body }}</span><br>
+            <button type="button" ONCLICK="change_action({{ node.id }})" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">Add comment</button>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    </ul>
+{% endrecursetree %}

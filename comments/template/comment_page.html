@@ -1,16 +1,10 @@
 {% extends "layout.html" %}
-{% load mptt_tags %}
+{% load static modal_coment_form %}
 {% block content %}
-<ul>
-    {% recursetree comments %}
-        <li>
-            <a href="{% url "comment_page" node.id %}">#{{ node.id }}</a> {{ node.title }}
-            {% if not node.is_leaf_node %}
-                <ul class="children">
-                    {{ children }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endrecursetree %}
-</ul>
+    {{ comment.html_block }}
+    {% modal_comment_form %}
+{% endblock %}
+{% block more_js %}
+ <script type="application/javascript" src="{% static 'js/django_ajax.js' %}"></script>
+ <script type="application/javascript" src="{% static 'js/comments_create.js' %}"></script>
 {% endblock %}

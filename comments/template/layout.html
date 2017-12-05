@@ -74,7 +74,7 @@
 
 
 
-
+    {% block pagination %}
       <!-- Pagination -->
       <ul class="pagination justify-content-center">
         <li class="page-item">
@@ -99,7 +99,7 @@
           </a>
         </li>
       </ul>
-
+    {% endblock pagination %}
     </div>
     <!-- /.container -->
 
@@ -114,6 +114,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    {% block more_js %}{% endblock more_js %}
 
   </body>
 
