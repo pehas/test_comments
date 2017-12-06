@@ -9,15 +9,14 @@ from django.db import migrations
 
 
 def add_random_data(apps, scheme_editor):
-    import random
     from bcomments.models import Comments
-    for i in xrange(1000):
+    for i in range(1000):
         Comments.create_comments()
     first_comment = Comments.objects.first()
-    for i in xrange(1000):
+    for i in range(1000):
         Comments.create_comments(first_comment)
     list_comments = list(Comments.objects.all())
-    for i in xrange(1000):
+    for i in range(1000):
         Comments.create_comments(random.choice(list_comments))
 
 
