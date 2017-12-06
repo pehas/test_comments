@@ -6,7 +6,7 @@ import string
 
 
 def get_random_word(word_len=15):
-    return "".join([random.choice(string.letters) for i in range(word_len)])
+    return "".join([random.choice(string.ascii_letters) for i in range(word_len)])
 
 
 def get_random_text(text_len=15):
