@@ -52,7 +52,7 @@ class Comments(MPTTModel):
     @classmethod
     def create_comments(cls, parent=None):
         cls.objects.create(
-            title=utils.get_random_text(random.randint(0, 9)),
+            title=utils.get_random_text(random.randint(0, 3)),
             username=utils.get_random_word(random.randint(0, 15)),
             body=utils.get_random_text(random.randint(0, 15)),
             parent=parent
